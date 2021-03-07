@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DBConnect : MonoBehaviour
 {
-    public Text email, username, score;
+    public Text email, username, score, password;
 
     public void AddDetails()
     {
@@ -28,6 +28,7 @@ public class DBConnect : MonoBehaviour
         form.AddField("email", email.text);
         form.AddField("name", username.text);
         form.AddField("score", score.text);
+        form.AddField("password", password.text);
         WWW www = new WWW("http://lubmir2k.mygamesonline.org/saveplayer.php", form);
 
         yield return www;
@@ -46,6 +47,7 @@ public class DBConnect : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("email", email.text);
+        form.AddField("password", password.text);
         WWW www = new WWW("http://lubmir2k.mygamesonline.org/retrieveplayer.php", form);
 
         yield return www;
@@ -56,10 +58,13 @@ public class DBConnect : MonoBehaviour
         }
         else
         {
-            Debug.Log(www.text);
+            // Debug.Log(www.text);
             string[] details = www.text.Split('|');
             username.transform.parent.GetComponent<InputField>().text = details[0];
-            score.transform.parent.GetComponent<InputField>().text = details[1];
+            if(details.Length > 2)
+            {
+                score.transform.parent.GetComponent<InputField>().text = details[1];
+            }
         }
     }
 

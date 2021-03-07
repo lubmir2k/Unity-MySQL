@@ -361,6 +361,7 @@ MonoBehaviour:
   email: {fileID: 1554323960}
   username: {fileID: 1533278751}
   score: {fileID: 1014262043}
+  password: {fileID: 1786655684}
 --- !u!4 &312372742
 Transform:
   m_ObjectHideFlags: 0
